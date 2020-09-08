@@ -1,0 +1,101 @@
+Rank in 2020,Rank in 2019,Institution Name,Country,SIZE,FOCUS,RESEARCH INTENSITY,AGE,STATUS,AcademicSCORE,AcademicRANK,EmpSCORE,EmpRANK,RatioSCORE,RatioRANK,CiteSCORE,CiteRANK,IntFacSCORE,IntFacRANK,IntStuSCORE,IntStuRANK,Overall Score
+1,1,Massachusetts Institute of Technology (MIT),United States,M,CO,VH,5,B,100,5,100,4,100,15,99.8,7,100,43,94.1,87,100
+2,2,Stanford University,United States,L,FC,VH,5,B,100,4,100,5,100,12,98.6,13,99.8,62,67.7,196,98.4
+3,3,Harvard University,United States,L,FC,VH,5,B,100,1,100,1,98.7,40,99.6,8,86.3,186,62.2,221,97.4
+4,5,University of Oxford,United Kingdom,L,FC,VH,5,A,100,3,100,3,100,8,84.7,45,99.7,64,98.5,50,97.2
+5,4,California Institute of Technology (Caltech),United States,S,CO,VH,5,B,97.8,23,81.2,74,100,4,100,4,99.4,72,87.3,121,96.9
+6,7,ETH Zurich (Swiss Federal Institute of Technology),Switzerland,L,CO,VH,5,A,98.4,22,96.7,25,85,113,98.4,15,100,19,98,53,95.9
+7,6,University of Cambridge,United Kingdom,L,FC,VH,5,A,100,2,100,2,100,10,74.2,74,100,58,97.6,58,95
+8,10,UCL (University College London),United Kingdom,XL,FC,VH,5,A,99.3,14,98.7,18,98.1,43,76.7,68,99.1,79,100,16,94.8
+9,8,Imperial College London,United Kingdom,L,FC,VH,5,A,98.6,21,99.9,9,99.8,30,72.1,85,100,46,100,14,94.1
+10,9,University of Chicago,United States,L,FC,VH,5,B,99.5,13,93.7,37,96.5,54,78.5,60,70.2,249,81,143,92
+11,12,Nanyang Technological University (NTU),Singapore,L,FC,VH,3,A,92.1,37,93.8,35,93.9,66,88.8,36,100,21,74.2,169,91.8
+12,11,National University of Singapore (NUS),Singapore,XL,FC,VH,5,A,99.8,11,99.2,14,88.3,89,75.7,71,100,23,76.4,158,91.8
+13,13,Princeton University,United States,M,CO,VH,5,B,99.9,10,98.6,19,70.7,192,100,3,64.9,272,67.6,197,90.9
+14,14,Cornell University,United States,L,FC,VH,5,B,98.7,19,90.4,49,65.7,215,95.1,21,93.8,142,72.3,174,89.3
+15,19,University of Pennsylvania,United States,L,FC,VH,5,B,95.8,32,93.7,38,100,20,67.6,105,84,199,63.6,216,88.9
+16,17,Tsinghua University,China,XL,FC,VH,5,A,97.4,26,99.1,15,92.4,72,80.4,53,68,259,30.1,429,88.6
+17,15,Yale University,United States,L,FC,VH,5,B,99.9,9,99.9,7,100,5,53.5,190,78.1,224,57.4,249,87.7
+18,16,Columbia University,United States,L,FC,VH,5,B,99.7,12,97.6,23,100,19,53,199,40.1,397,96.9,63,87.4
+19,22,Ecole Polytechnique Fédérale de Lausanne (EPFL),Switzerland,M,FO,VH,5,A,75.6,72,77.6,82,96.6,52,98.9,12,100,13,100,13,87.4
+20,18,University of Edinburgh,United Kingdom,XL,FC,VH,5,A,97.5,24,93.7,36,85.6,105,53,198,98,103,98.6,47,86.2
+21,20,University of Michigan,United States,XL,FC,VH,5,A,98.9,18,94.4,31,91,76,61.6,138,79.7,217,44.1,322,86
+22,30,Peking University,China,XL,FC,VH,5,A,99.1,16,99.6,12,72.3,182,73,79,70.7,248,36.9,372,84.3
+23,23,The University of Tokyo,Japan,L,FC,VH,5,A,100,7,99.1,16,93.3,69,67.9,102,11.1,601,26.2,469,84.3
+24,21,Johns Hopkins University,United States,L,FC,VH,5,B,88.3,48,52.6,156,100,13,77.6,64,68.8,256,81.5,140,83.9
+25,26,Duke University,United States,L,FC,VH,5,B,89,44,84.2,62,99.4,38,80.3,55,12.4,601,59.3,237,83.8
+26,25,University of Hong Kong (HKU),Hong Kong,L,FC,VH,5,A,97.3,27,82.6,67,87.2,97,44.5,283,100,22,99.1,38,83.8
+27,29,The University of Manchester,United Kingdom,XL,FC,VH,5,A,94.9,33,97.7,22,74.1,172,51.5,211,92.6,149,98.6,46,82.7
+28,27,"University of California, Berkeley (UCB)",United States,XL,FC,VH,5,A,100,6,99.9,8,30.9,489,97.7,17,92.4,151,39.7,346,82.6
+29,24,Australian National University (ANU),Australia,L,FC,VH,4,A,96.9,29,81.3,72,37.5,417,87.4,40,100,41,99.8,30,82.1
+30,28,University of Toronto,Canada,XL,FC,VH,5,A,98.9,17,96.3,27,71.5,189,43.9,288,97.7,107,93,96,82.1
+31,34,Northwestern University,United States,L,FC,VH,5,B,85.9,55,80.2,78,100,22,62.8,128,76.1,231,49,295,81.5
+32,37,The Hong Kong University of Science and Technology (HKUST),Hong Kong,M,CO,VH,3,A,85,57,71.3,94,59.5,242,89.5,33,100,16,87.5,120,80.6
+33,31,King's College London (KCL),United Kingdom,L,FC,VH,5,A,88.5,46,80.4,77,82.3,132,52,205,98.5,89,99.8,29,80.5
+34,35,Kyoto University,Japan,L,FC,VH,5,A,98.7,20,92.5,41,96.3,56,53.2,196,15.4,601,17.5,564,80.5
+35,33,McGill University,Canada,L,FC,VH,5,A,92.2,36,93.8,33,63.3,225,58.4,154,93.7,144,96.2,71,80.4
+36,32,"University of California, Los Angeles (UCLA)",United States,XL,FC,VH,5,A,100,8,99.7,11,40.6,378,88.3,37,50.4,335,38.2,357,80.4
+37,36,Seoul National University (SNU),South Korea,L,FC,VH,4,A,96.9,30,91.1,45,88,92,61.6,137,19.2,557,11.9,601,79.6
+38,39,The University of Melbourne,Australia,XL,FC,VH,5,A,99.2,15,98.1,21,24.1,587,75,73,97.6,109,100,23,79.5
+39,43,New York University (NYU),United States,XL,FC,VH,5,B,95.9,31,95.6,29,97.6,49,24,497,33.5,437,93.4,94,78.8
+40,44,Fudan University,China,XL,FC,VH,5,A,83.4,60,93.8,34,86.5,99,57.8,157,92.7,147,42.9,329,78.6
+41,40,KAIST - Korea Advanced Institute of Science and Technology,South Korea,M,CO,VH,3,A,85,58,74.5,88,73.9,175,98.1,16,25.8,494,10.1,601,77.9
+42,42,The University of Sydney,Australia,XL,FC,VH,5,A,97.5,25,96.4,26,23.6,597,70.9,90,100,42,100,20,77.8
+43,45,The University of New South Wales (UNSW),Australia,XL,FC,VH,4,A,91.2,38,95.7,28,19.8,601,84.5,46,100,48,98.5,48,77.1
+44,38,London School of Economics and Political Science (LSE),United Kingdom,M,SP,VH,5,A,78.9,68,99.7,10,34.8,450,91.1,29,100,29,100,7,77
+45,41,"University of California, San Diego (UCSD)",United States,XL,FC,VH,4,A,92.2,35,51.8,161,60.3,239,78.4,61,60.8,287,70.3,182,76.6
+46,49,The Chinese University of Hong Kong (CUHK),Hong Kong,L,FC,VH,4,A,87.9,51,61.5,121,67.7,204,56.2,171,100,52,91.7,101,75.9
+47,48,The University of Queensland (UQ),Australia,XL,FC,VH,5,A,88.5,45,82.2,69,27.7,542,81.8,50,100,36,99.5,34,75.7
+48,46,Carnegie Mellon University,United States,L,FC,VH,5,B,75.2,73,77.5,83,43.5,352,94.3,24,83.6,201,99.9,25,74.8
+49,51,University of Bristol,United Kingdom,L,FC,VH,5,A,76.6,70,84.2,63,72.8,179,61.8,135,89.4,173,75.6,159,74.5
+50,52,Delft University of Technology,Netherlands,L,CO,VH,5,A,71.2,82,88.2,55,46.4,318,90,32,99.3,75,87.8,118,74.2
+51,47,University of British Columbia,Canada,XL,FC,VH,5,A,97,28,89,52,46,321,42.2,308,90.8,164,79.3,147,74.1
+52,55,City University of Hong Kong,Hong Kong,M,CO,VH,3,A,59,122,41.3,230,89.7,81,89.4,34,100,14,95.3,80,73.6
+53,50,Université PSL (Paris Sciences & Lettres),France,L,,,1,,77.7,69,98.6,20,100,21,26.2,470,67.1,262,72.1,175,73.4
+54,68,Zhejiang University,China,XL,FC,VH,5,A,67.7,92,86.5,58,78.6,150,63.9,125,95.4,130,62.9,220,72.4
+55,61,Technische Universität München,Germany,XL,CO,VH,5,A,80.2,63,99,17,89.1,86,26.9,458,60.6,290,76.8,157,72.3
+56,53,University of Wisconsin-Madison,United States,XL,FC,VH,5,A,87.8,52,49.7,169,85.5,107,50,228,57.2,308,30.9,420,71.8
+57,56,Brown University,United States,M,FC,VH,5,B,61.9,110,58.2,134,81.1,139,86.6,41,86,189,56,261,71.5
+58,  59=,Monash University,Australia,XL,FC,VH,4,A,88,50,91.9,42,17.1,601,64.2,123,100,44,99.9,27,70.9
+59,58,Tokyo Institute of Technology,Japan,M,CO,VH,5,A,74.5,75,82.7,66,86.2,101,61.3,140,30.7,454,31.3,417,70.9
+60,65,Ecole Polytechnique,France,S,CO,VH,5,A,43.8,183,99.3,13,99.6,36,66.3,109,95.2,131,97.9,54,70.5
+61,  59=,Shanghai Jiao Tong University,China,XL,FC,VH,5,A,79.6,66,93.6,39,53.7,277,65.5,118,84.1,198,20.1,531,70.5
+62,54,The University of Warwick,United Kingdom,L,FC,VH,4,A,74.4,76,94.1,32,55.3,267,50.3,225,97.8,105,99.1,40,70.4
+63,62,Ludwig-Maximilians-Universität München,Germany,XL,FC,VH,5,A,91.1,39,83.2,65,52.6,285,45.7,271,61.5,285,37.7,362,69.6
+64,57,University of Amsterdam,Netherlands,L,FC,VH,5,A,81.1,61,56,143,44.8,336,75.9,70,79.5,219,52.5,278,69
+65,63,University of Texas at Austin,United States,XL,FC,VH,5,A,94.2,34,83.3,64,12.1,601,93.4,27,6.9,601,18.6,548,68.6
+66,64,Ruprecht-Karls-Universität Heidelberg,Germany,L,FC,VH,5,A,80,65,50.6,168,96.7,51,34.8,385,52.8,323,44.2,319,68.4
+67,  69=,University of Glasgow,United Kingdom,L,FC,VH,5,A,72.2,79,58.9,131,63.7,223,55,182,93.7,143,96.5,67,68.2
+68,66,University of Washington,United States,XL,FC,VH,5,A,86.1,54,51.4,165,17.4,601,99.2,11,55.8,313,40.5,342,67.9
+69,72,National Taiwan University (NTU),Taiwan,XL,FC,VH,4,A,89.8,41,82.4,68,41.9,365,59.7,144,20.8,540,30.4,427,67.3
+70,  87=,Universiti Malaya (UM),Malaysia,L,FC,VH,5,A,68.2,91,72,92,90.7,78,41.5,317,62.8,280,57.2,251,67.1
+71,67,Osaka University,Japan,L,FC,VH,4,A,80.8,62,67.5,104,80.3,143,46.2,262,23.1,519,14.3,601,66.5
+72,  69=,Georgia Institute of Technology (Georgia Tech),United States,L,CO,VH,5,A,71.1,83,81.7,71,15.1,601,100,6,60.4,291,65.8,203,66.2
+73,73,Universidad de Buenos Aires,Argentina,XL,FC,VH,5,A,87.2,53,91.3,43,77.4,156,2.4,601,50.7,333,64.7,211,66
+74,71,University of Illinois at Urbana-Champaign,United States,XL,FC,VH,5,A,89,43,58.1,135,13.5,601,86.3,42,19.3,556,67.2,198,65.9
+75,78,University of Zurich,Switzerland,L,FC,VH,5,A,58.6,124,64.5,111,99.7,33,38.7,337,100,55,59.4,235,65.8
+76,  75=,Sorbonne University,France,XL,FC,VH,1,A,89.2,42,45.9,196,59.7,241,36.2,377,47.8,344,56.5,257,64.9
+77,74,Durham University,United Kingdom,L,FC,VH,5,A,57.3,130,91.2,44,35.9,435,77.9,63,97.2,113,87.2,122,64.2
+78,  75=,The University of Sheffield,United Kingdom,L,FC,VH,5,A,61.3,114,58.7,132,61,237,61.4,139,87.9,179,94.1,86,64.2
+79,81,Katholieke Universiteit Leuven,Belgium,XL,FC,VH,5,A,79.1,67,64.3,112,11.8,601,85.3,44,90,168,37.5,366,64.1
+80,  79=,University of Birmingham,United Kingdom,L,FC,VH,5,A,65.6,97,78.8,79,54.8,272,49.3,237,91.8,154,85.7,125,64
+81,  79=,University of Copenhagen,Denmark,XL,FC,VH,5,A,70.1,85,43.9,209,100,23,25.5,479,92.6,148,29.4,435,63.8
+82,77,Tohoku University,Japan,L,FC,VH,5,A,69.5,88,59.1,130,98.2,42,43.1,299,12.7,601,17.6,558,63.7
+83,86,Korea University,South Korea,L,FC,VH,5,B,70,86,85,59,83.1,126,35.4,381,15.2,601,44.7,317,63.4
+84,85,The University of Auckland,New Zealand,L,FC,VH,5,A,84.2,59,62.8,120,25,579,44.8,281,94.4,137,91.8,100,63.4
+84,90,Lomonosov Moscow State University,Russia,XL,FC,VH,5,A,73.6,77,84.9,60,99.7,34,7.2,601,18,571,56.1,260,63.2
+85,  87=,Rice University,United States,M,FC,VH,5,B,40.1,203,22.7,414,84,123,93.6,26,89.8,170,90.6,106,63.1
+86,91,The University of Western Australia (UWA),Australia,L,FC,VH,5,A,62.4,107,59.8,127,20.8,601,88.3,39,100,30,98.7,44,62.9
+87,  83=,Pohang University of Science and Technology (POSTECH),South Korea,S,FO,VH,3,B,41.3,194,40.8,233,99.9,27,99.3,9,35.3,423,3.6,601,62.6
+89,98,University of Science and Technology of China,China,L,CO,VH,4,A,56.2,132,26.1,362,81.1,140,98.5,14,16.9,588,5.7,601,62.3
+90,  83=,"University of North Carolina, Chapel Hill",United States,XL,FC,VH,5,A,68.7,90,53.3,153,88.3,91,46,267,35.6,422,11.3,601,62.2
+91,106,The Hong Kong Polytechnic University,Hong Kong,L,CO,VH,3,A,61.3,113,43.7,213,74.1,173,46.3,261,100,50,74.8,165,61.9
+92,92,Lund University,Sweden,L,FC,VH,5,A,69.6,87,54.3,147,50.1,303,51.9,206,89.3,174,70.1,183,61.8
+93,95,Pennsylvania State University,United States,XL,FC,VH,5,A,76.5,71,80.4,76,31.6,478,67.8,104,21.4,533,38.6,353,61.7
+94,  93=,University of Leeds,United Kingdom,XL,FC,VH,5,A,69.2,89,81.2,73,45.5,328,41.6,316,84.1,197,81.8,139,61.7
+95,  100=,Sungkyunkwan University,South Korea,L,FC,VH,5,B,58.4,126,74.6,87,85.7,104,49.3,236,21.3,535,38.1,358,61
+96,82,The University of Nottingham,United Kingdom,XL,FC,VH,5,A,60.3,120,73.2,91,52.4,290,49.7,234,92.1,152,82.1,137,60.8
+97,96,University of Southampton,United Kingdom,L,FC,VH,5,A,50.8,155,52.5,157,59,248,68.1,101,96.1,122,92.8,97,60.6
+98,  93=,Boston University,United States,L,FC,VH,5,B,63.1,103,57.5,138,53.8,276,62.1,132,33.8,435,88.6,115,60.5
+99,  104=,"KTH, Royal Institute of Technology",Sweden,L,CO,VH,5,A,47.5,166,68.4,102,63,229,72.8,82,96.9,116,48.7,297,60.5
+100,97,University of St Andrews,United Kingdom,M,FC,VH,5,A,45.2,176,51.6,162,65.3,217,67.4,106,98.7,86,99.8,28,59.9
