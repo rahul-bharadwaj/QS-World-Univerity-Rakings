@@ -9,3 +9,5 @@ This Data Exploration Project is an effort to answer some questions around the a
 1. What factors other than rank is more desirable when deciding the quality of a University? In other words, how do Universities compare in terms of the 6 factors in QS factor classification?
 2. Which Universities top in each of the specific factors?
 3. Is there a correlation between different classification factors like Country, Age of the University, Reputation of the University, Size and International Student Numbers?
+
+Refer to Reports folder for final reports. Refer to "UniversityRankingAnalysis.html" for HTML output.
