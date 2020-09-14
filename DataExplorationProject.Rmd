@@ -9,21 +9,32 @@ output: html_document
 knitr::opts_chunk$set(echo = FALSE,
                       message = FALSE,
                       warning = FALSE,
-                      fig.align = 'center',
+                      fig.align = "center",
                       fig.pos = 'H')
 library(tidyverse)
-library(visdat)
-library(here)
 library(ggplot2)
 library(ggpubr)
 library(png)
+library(visdat)
+library(plotly)
+library(viridis)
+library(DT)
+library(kableExtra)
 ```
 
 # **Introduction -**
 
+Choosing between Universities is something we all go through at some or the other point in our lives. Why do you select a certain University over others? Is it because it is reputed? Is it the rank of the University? Is it the Quality of education and faculty? Or just because your friend is joining that same Institution? I hope its not that last option that you prioritize first, haha!
+
+Having joined Monash University in Feb 2020, I'm always asked questions about my experience about the same. This is something I myself did before joining because it's a major decision in one's life and we need to know about our options thoroughly and transparently from someone who is actually walking the path we intend to take. I thought this Data Story would help future students and also help me analyze my own decisions in life. Why exactly did I choose Monash? Here's my story at Monash and I would like to back it up with facts since I specialize in Business Analytics!
+
 University ranking is a measurable outcome of multiple factors that are considered to evaluate the standard of education, faculty, resources, and infrastructure. Every year, Universities are ranked by different organizations around the world like CWUR, Times Higher Education, Quacquarelli Symmonds (QS) and many others. We are using a dataset that contains rankings of the world universities as maintained by QS.
 
-Quacquarelli Symmonds (QS) is a British think-tank company specializing in the analysis of higher education institutions throughout the world. It uses 6 factors for their ranking framework wiz. Academic Reputation, Employer Reputation, Faculty to Student Ratio, Number of Citations per Faculty, International Faculty, International Students. Another feature included in this data was Classification (which is not used for ranking) which included the institution's size, subject range, research intensity, age, and status.
+```{r QSimg}
+knitr::include_graphics("Images/QSWUR-logo.png")
+```
+
+[**Quacquarelli Symmonds (QS)**](https://www.qs.com/) is a British think-tank company specializing in the analysis of higher education institutions throughout the world. **It uses 6 factors for their ranking framework wiz. Academic Reputation, Employer Reputation, Faculty to Student Ratio, Number of Citations per Faculty, International Faculty, and International Students.** Another feature included in this data was Classification (which is not used for ranking) which included the institution's size, subject range, research intensity, age, and status.
 
 This Data Exploration Project is an effort to answer some questions around the analysis of higher education institutions such as the following –
 
@@ -35,28 +46,32 @@ This Data Exploration Project is an effort to answer some questions around the a
 
 # **Data Description -**
 
-*	Kaggle link for dataset - https://www.kaggle.com/divyansh22/qs-world-university-rankings.
+*	Kaggle link for dataset - https://www.kaggle.com/divyansh22/qs-world-university-rankings
  
 *	It is a Tabular Data: 1K rows x 22 columns. It has simple text in the form of “.csv”
 
 *	For the purpose of our analysis, we make use of only the top 100 Universities of the world as it seems to have rich data and people are usually more likely to compare among the top 100.
 
-*	The Tools and Technologies used for this Project are Microsoft Excel, R & RStudio, and Tableau.
+# **Data Checking -**
 
-# **Data Wrangling -**
+* Data checking is the process of scrutinizing the data before using it for analysis. Data can be checked both simply in the text form like in MS Excel or using advanced visual methods in R.
 
-**visdat: Visualizing Whole Data Frames in R - by Nicholas Tierney**
+* Some packages in R are very useful to check the overall data and its types in each row and column.
 
-* visdat() is an R package that has a variety of functions to visualize datasets and give a visual overview of the dataset of interest. We read the data into R environment after filtering top 100 observations in Microsoft Excel and use the clean data.
+* Some of the manual cleaning was done on MS Excel before transformations in R.
 
-```{r ReadData, fig.cap='Reading Data into R environment', echo=TRUE}
+**A glimpse of the Raw Data is as follows –**
+
+* We read the cleaned dataset into "our/R" envirnoment as follows (pun intended!):
+```{r ReadData, echo=TRUE}
 #reading the data
 Uni2020 <- read.csv(here::here("Data/Clean/2020-QS-World-University-Rankings.csv"))
 ```
 
-* The raw data has all columns in character format, and we convert it into appropriate types using the following procedure in RStudio.
+* A glimpse at the dataset shows that all the columns are not in a way it would be useful for mathematical operations. So we covert the data-types to make the columns operation-friendly using the code below.
 
 ```{r Transformation, echo=TRUE}
+#datatype tranformation
 TopUni2020 <- Uni2020 %>% select(-Rank.in.2019) %>% mutate(
                    SIZE = as.factor(SIZE),
                    FOCUS = as.factor(FOCUS),
@@ -78,62 +93,67 @@ TopUni2020 <- Uni2020 %>% select(-Rank.in.2019) %>% mutate(
                    Overall.Score = as.double(Overall.Score))
 ```
 
-* We deselect ‘Rank.in.2019’ column, mutate classification factors to factor type, Score fields to double type and Rank fields to integer type which is suitable for mathematical operations. Operations cannot be performed on character fields and hence, this data transformation in necessary for mathematical analysis of fields.
+* The above code creates a new data frame "TopUni2020" which has the data in the desirable form. The following visualization shows that we have 6 factors divided into Rank and Scores with Rank being an integer and Score being a numeric/double value with a decimal point. The classification factors are converted to factors.
 
-* Next, we visualize the data using the following commands on R.
-
-```{r visInitialData, fig.cap='Initial Dataset Visualization with Datatypes'}
-#checking the data
-vis_dat(Uni2020)
-```
-
-*	The above visualization shows column names on x-axis and number of observations on y-axis. The ‘Type’ legend displays the data type for the observations for corresponding columns.
-
-* We can see that there are only 3 datatypes in the data. They are character, integer, and numeric. Some of the classification factors are converted into factor using as.factor() function in R.
-
-* After checking the data for its types and missing values, we can move on to further data exploration and analysis. The following visualization shows the converted type after transformation in R.
-
-```{r visData, fig.cap='Tranformed Dataset Visualization with Datatypes'}
-#checking the data
+```{r visdat, fig.cap='Visualizing the transformed data-types of the columns'}
 vis_dat(TopUni2020)
 ```
 
-* The above figure shows that factor type is added for classification variables and 2019 rank column is deleted. This data is clean without any errors and is ready for exploration and analysis.
+#### **The list of Universities in the QS dataset considered with Rank and Name of University is as follows -**
 
-
-# **Data Checking -**
-
-* Data checking is the process of scrutinizing the data before using it for analysis. Data can be checked both simply in the text form like in MS Excel or using advanced visual methods in R.
-
-* Some packages in R are very useful to check the overall data and its types in each row and column as described in the previous section. Now, let’s check the simple text inconsistencies.
-
-* Some of the manual cleaning done on MS Excel before transformations in R is as follows -
-
-**A glimpse of the Raw Data is as follows –**
-
-```{r Excelpic1, fig.cap='Raw Data in Excel'}
-knitr::include_graphics("Images/Checking/RawData.png")
+```{r UniList}
+DT::datatable(TopUni2020 %>% select(Institution.Name, Overall.Score))
 ```
 
-* On the first look, we can observe some main columns and sub columns for the 6 factors. Also, some records have inconsistent values in the “Rank in 2020” column like the 11th and 12th rank in the above example.
+# **My Experience at Monash -**
 
-* Such small inconsistencies are first manually cleaned on MS Excel for easy processing in RStudio for further Analysis. After making manual changes, the clean data looks something like this –
+Having learned the skill of analyzing raw data and turning them into useful insights for decision making, this was one of the best topics to choose. This serves as a helpful guide to students and also help me showcase my skills, both at once! This felt like a creative mini data story that I wanted to create not just to showcase my skills, but also with an intention to help people!
 
-```{r Excelpic2, fig.cap='Cleaned Data in Excel'}
-knitr::include_graphics("Images/Checking/CleanData.png")
+* Monash has a diverse and multicultural community which helps in developing multicultural competence and a strong employer reputation. These were the two factors I was looking for in selecting a University for my higher education. The next strongest factor of Monash is its quality of education. These three factors were the main reason for my choice of University.
+
+* As a Business Analyctics student, I have learnt Data Wrangling, Cleaning, Visualizing and Insightful reporting, all of which is covered in this data story! I'd have to say I'm enjoying the coursework thoroughly and learning a lot despite the teaching being online due to COVID-19. I couldn't have spent my 2020 better and this was one of the most productive years of my life! Yes, it's completely opposite to what the entire world might think of 2020 as in the future, haha! 
+
+* Before we dive into answering the questions, let us look at where Monash University stands.
+
+The important classification factors are as follows -
+
+* Size - XL: Extra Large (>30,000 students) L: Large (>=12,000 students) M: Medium (>=5,000 students) S: Small (<5000)
+
+* Research Intensity - VH: Very High HI: High MD: Medium LO: Low
+
+* Institute Age - 5: Historic (>100 years old) 4: Mature (50-100 years old) 3: Established (25-50 years old) 2: Young (10-25) 1: New (<10 years old)
+
+```{r MonashData}
+Monash <- TopUni2020 %>% filter(Institution.Name == "Monash University")
 ```
 
-* We can observe that the sub column structure is made into a single column name structure and the inconsistent “Rank in 2020” column in corrected.
+                  Institution Name - `r Monash$Institution.Name`
+                              Rank - `r Monash$Rank.in.2020`
+                           Country - `r Monash$Country`
+                            
+                          Classification Factors                    
+                              Size - `r Monash$SIZE`                           
+               Reasearch Intensity - `r Monash$RESEARCH.INTENSITY`                   
+                               Age - `r Monash$AGE`
+                       
+                          6 Factor Scores on 100
+               Academic Reputation - `r Monash$AcademicSCORE`
+               Employer Reputation - `r Monash$EmpSCORE`
+          Faculty to Student Ratio - `r Monash$RatioSCORE`
+             Citations per Faculty - `r Monash$CiteSCORE`
+             International Faculty - `r Monash$IntFacSCORE` 
+            International Students - `r Monash$IntStuSCORE`
 
-* Some columns related to 6 factor Ranks contained data such as 601+ which cannot be processed for operations in R. We find and replace all instances ‘601+’ with ‘601’. This data is clean enough to be further processed in RStudio and Tableau for further analysis.
-
+* Monash is ranked `r Monash$Rank.in.2020` in the world according to QS World University Rankings.
+* Located in Melbourne, Australia, it has a total size of over 60,000 (`r Monash$SIZE`) and is the largest University in Australia.
+* It is 62 years old as of 2020 and ranges in the Mature(`r Monash$AGE`) University list.
+* Employer Reputation, International Faculty, and International Students are its strongest factors.
+                          
 # **Data Exploration -**
 
-* Data Exploration is the process of making sense of the data through visualizations. It not only helps us answer the questions defined for the analysis, but also helps us discover new insights we did not intend to find that can be useful.
+* Let's get back to answering our three main questions now!
 
-* It sometimes helps us find insights about new things and formulate new questions that can further enhance the details about the primary answers to the questions defined beforehand.
-
-1. **What factors other than rank is more desirable when deciding the quality of a University? How do Universities compare in terms of the 6 factors in QS factor classification? Which University tops in each of the specific factors?**
+#### **1. What factors other than rank is more desirable when deciding the quality of a University? How do Universities compare in terms of the 6 factors in QS factor classification?**
 
 ```{r geomSmooth, fig.cap='Correlation between Rank of the University and 6 factors'}
 AcadSmooth <- TopUni2020 %>% ggplot(aes(Rank.in.2020, AcademicSCORE)) + geom_smooth() +
@@ -157,81 +177,114 @@ IntStuSmooth <- TopUni2020 %>% ggplot(aes(Rank.in.2020, IntStuSCORE)) + geom_smo
 ggarrange(AcadSmooth, EmpSmooth, RatioSmooth, CiteSmooth, IntFacSmooth, IntStuSmooth)
 ```
 
-* From the figure above, Academic Reputation and Employer Reputation Scores have a negative correlation as the Rank value increases from 1-100. This means that better the University rank, better is the Academic Quality and Employers seek graduates from top universities in general.
+* From the figure above, Academic Reputation and Employer Reputation Scores have a strong correlation as the Rank value increases from 1-100. This means that better the University rank, better is the Academic Quality and Employers seek graduates from top universities in general.
 
-* Faculty to Student Ratio and Citations per Faculty are somewhat similar after the 35th Rank and shows lesser correlation than the previous two factors.
+* Faculty to Student Ratio and Citations per Faculty are similar after the 35th Rank and shows lesser correlation.
 
-* International Faculty and Student Scores are not correlated with rank and show bimodal distribution with the increase in rank value from 1-100.
+* International Faculty and Student Scores are not correlated with rank and show bimodal distribution with the increase in rank value.
 
-* Thus, we can say that Academic Reputation and Employer Reputation are the factors other than rank that decides the quality of an institution in general.
+* Thus, we can say that Academic Reputation and Employer Reputation are the factors other than rank that decides the quality of an institution in general. The following table verifies the correlation of factor with Rank.
 
-2. **Which Universities top in each of the specific factors?**
-
-* We consider the Universities that have a Score of 100/100 in each factor. The numbering in the plot represents the world university ranking in the QS list for that university.
-
-```{r TopUniFactorsA}
-TopUni2020 %>% filter(AcademicSCORE == 100) %>%
-  ggplot(aes(x = Rank.in.2020, y = Institution.Name,
-             color = Institution.Name, label = Rank.in.2020)) + geom_point() +
-  geom_text(vjust = -0.3, nudge_y = 0.05)+
-  ggtitle("Top Academic Reputation Scores") + theme(axis.text.y = element_blank())
+```{r CorTable}
+gather_cor(TopUni2020 %>% select(Rank.in.2020, AcademicRANK, EmpRANK, RatioRANK,
+                              CiteRANK, IntFacRANK, IntStuRANK)) %>%
+  head(6) %>% select(-row_2) %>% rename(Factor = "row_1", CorrelationWithRank = "value") %>% 
+  kable() %>% kable_styling(bootstrap_options = 'striped', full_width = FALSE)
 ```
 
-    The figure shows the Universities that are best at Academic Reputation in the QS World Rankings. We can observe that University of Tokyo, UCB, and UCLA which are not in the top 10 ranks have the best Academic Reputation. Harvard, MIT, Stanford, Cambridge, and Oxford which are among the top universities make it into this list which was expected.
+#### **2. Which Universities top in each of the specific factors?**
 
-```{r TopUniFactorsE}
-TopUni2020 %>% filter(EmpSCORE == 100) %>%
-  ggplot(aes(x = Rank.in.2020, y = Institution.Name,
-             color = Institution.Name, label = Rank.in.2020)) + geom_point() +
-  geom_text(vjust = -0.3, nudge_y = 0.05)+
-  ggtitle("Top Employer Reputaion Scores") + theme(axis.text.y = element_blank())
+* We consider the Universities that have a Score of 100/100 in each factor. These are interactive plots that give the Rank, Name, and Overall score of the particular University when hovered over.
+
+```{r TopUniFactorsA, fig.width=10}
+A <- TopUni2020 %>% filter(AcademicSCORE == 100)
+
+Aplot <- ggplot(A, aes(x = Rank.in.2020, y = Institution.Name, color = Overall.Score)) +
+  geom_point() +
+  ggtitle("Top Academic Reputation Scores") +
+  geom_text(label = A$Rank.in.2020, nudge_y = 0.25) +
+  scale_color_viridis_c() + theme_bw() + theme(axis.title.y = element_blank())
+
+ggplotly(Aplot)
 ```
 
-    The figure shows the Universities that are best at Employer Reputation in the QS World Rankings. We can observe that only five universities have a score of 100 in this factor. Harvard, MIT, Stanford, Cambridge, and Oxford, all of which are in the top ten have made it into this list. This shows that employers mostly seek students from the topmost universities.
+* The figure shows the Universities that are best at Academic Reputation in the QS World Rankings. We can observe that University of Tokyo, UCB, and UCLA which are not in the top 10 ranks have the best Academic Reputation. Harvard, MIT, Stanford, Cambridge, and Oxford which are among the top universities make it into this list which was expected.
 
-```{r TopUniFactorsR}
-TopUni2020 %>% filter(RatioSCORE == 100) %>%
-  ggplot(aes(x = Rank.in.2020, y = Institution.Name,
-             color = Institution.Name, label = Rank.in.2020)) + geom_point() +
-  geom_text(vjust = -0.3, nudge_y = 0.05)+
-  ggtitle("Top Faculty to Student Ratio Scores") + theme(axis.text.y = element_blank())
+```{r TopUniFactorsE, fig.width=10}
+E <- TopUni2020 %>% filter(EmpSCORE == 100)
+
+Eplot <- ggplot(E, aes(x = Rank.in.2020, y = Institution.Name, color = Overall.Score)) +
+  geom_point() +
+  ggtitle("Top Employer Reputation Scores") +
+  geom_text(label = E$Rank.in.2020, nudge_y = 0.25) +
+  scale_color_viridis_c() + theme_bw() + theme(axis.title.y = element_blank())
+
+ggplotly(Eplot)
 ```
 
-    The figure shows the Universities that are best at Faculty to Student Ratio in the QS World Rankings. We can see that Universities ranked at 31st, 53rd, and 81st have made it into this list. This means to say that the universities in this list have a greater number of faculty in comparison to the number of students in that university. We can observe that some of the universities ranked lower also have ample number of faculty per student.
+* The figure shows the Universities that are best at Employer Reputation in the QS World Rankings. We can observe that only five universities have a score of 100 in this factor. Harvard, MIT, Stanford, Cambridge, and Oxford, all of which are in the top ten have made it into this list. This shows that employers mostly seek students from the topmost universities.
+
+```{r TopUniFactorsR, fig.width=10}
+R <- TopUni2020 %>% filter(RatioSCORE == 100)
+
+Rplot <- ggplot(R, aes(x = Rank.in.2020, y = Institution.Name, color = Overall.Score)) +
+  geom_point() +
+  ggtitle("Top Faculty to Student Ratio Scores") +
+  geom_text(label = R$Rank.in.2020, nudge_y = 0.25) +
+  scale_color_viridis_c() + theme_bw() + theme(axis.title.y = element_blank())
+
+ggplotly(Rplot)
+```
+
+* The figure shows the Universities that are best at Faculty to Student Ratio in the QS World Rankings. We can see that Universities ranked at 31st, 53rd, and 81st have made it into this list. This means to say that the universities in this list have a greater number of faculty in comparison to the number of students in that university. We can observe that some of the universities ranked lower also have ample number of faculty per student.
     
-```{r TopUniFactorsC}
-TopUni2020 %>% filter(CiteSCORE == 100) %>%
-  ggplot(aes(x = Rank.in.2020, y = Institution.Name,
-             color = Institution.Name, label = Rank.in.2020)) + geom_point() +
-  geom_text(vjust = -0.3, nudge_y = 0.05)+
-  ggtitle("Top Citations per Faculty Scores") + theme(axis.text.y = element_blank())
+```{r TopUniFactorsC, fig.width=10}
+C <- TopUni2020 %>% filter(CiteSCORE == 100)
+
+Cplot <- ggplot(C, aes(x = Rank.in.2020, y = Institution.Name, color = Overall.Score)) +
+  geom_point() +
+  ggtitle("Top Citation per Faculty Scores") +
+  geom_text(label = C$Rank.in.2020, nudge_y = 0.25) +
+  scale_color_viridis_c() + theme_bw() + theme(axis.title.y = element_blank())
+
+ggplotly(Cplot)
 ```
 
-    The figure shows the Universities that are best at Citations per Faculty in the QS World Rankings. We can observe that only 3 universities in the QS rankings have a score of 100 in this factor. Caltech, Georgia Tech, and Princeton universities have the most citations per faculty. This means to say that the faculty in these universities have the greatest number of research papers and citable work cited under their names.
+* The figure shows the Universities that are best at Citations per Faculty in the QS World Rankings. We can observe that only 3 universities in the QS rankings have a score of 100 in this factor. Caltech, Georgia Tech, and Princeton universities have the most citations per faculty. This means to say that the faculty in these universities have the greatest number of research papers and citable work cited under their names.
     
-```{r TopUniFactorsF}
-TopUni2020 %>% filter(IntFacSCORE == 100)%>%
-  ggplot(aes(x = Rank.in.2020, y = Institution.Name,
-             color = Institution.Name, label = Rank.in.2020)) + geom_point() +
-  geom_text(vjust = -0.3, nudge_y = 0.05)+
-  ggtitle("Top International Faculty Scores") + theme(axis.text.y = element_blank())
+```{r TopUniFactorsF, fig.width=10}
+F <- TopUni2020 %>% filter(IntFacSCORE == 100)
+
+Fplot <- ggplot(F, aes(x = Rank.in.2020, y = Institution.Name, color = Overall.Score)) +
+  geom_point() +
+  ggtitle("Top International Faculty Scores") +
+  geom_text(label = F$Rank.in.2020, nudge_y = 0.25) +
+  scale_color_viridis_c() + theme_bw() + theme(axis.title.y = element_blank())
+
+ggplotly(Fplot)
 ```
 
-    The figure shows the Universities that are best in the number of International Faculty in the QS World Rankings. There is a long list of universities that have a score of 100 under this factor. This goes to show that these universities are multicultural and have faculty from different countries from all around the globe.
+* The figure shows the Universities that are best in the number of International Faculty in the QS World Rankings. There is a long list of universities that have a score of 100 under this factor. This goes to show that these universities are multicultural and have faculty from different countries from all around the globe.
     
-```{r TopUniFactorsS}
-TopUni2020 %>% filter(IntStuSCORE == 100)%>%
-  ggplot(aes(x = Rank.in.2020, y = Institution.Name,
-             color = Institution.Name, label = Rank.in.2020)) + geom_point() +
-  geom_text(vjust = -0.3, nudge_y = 0.05)+
-  ggtitle("Top International Students Scores") + theme(axis.text.y = element_blank())
+```{r TopUniFactorsS, fig.width=10}
+S <- TopUni2020 %>% filter(IntStuSCORE == 100)
+
+Splot <- ggplot(S, aes(x = Rank.in.2020, y = Institution.Name, color = Overall.Score)) +
+  geom_point() +
+  ggtitle("Top International Students Scores") +
+  geom_text(label = S$Rank.in.2020, nudge_y = 0.25) +
+  scale_color_viridis_c() + theme_bw() + theme(axis.title.y = element_blank())
+
+ggplotly(Splot)
 ```
 
-    The figure on the left shows the Universities that are best in the number of International Students in the QS World Rankings. Only 6 universities in the list have made it to this list with a score of 100 in the factor. This goes out to show that these universities are diverse and multicultural in their student population and accept students from a broad array of backgrounds and cultures.
+* The figure shows the Universities that are best in the number of International Students in the QS World Rankings. Only 6 universities in the data have made it to this list with a score of 100 in the factor. This goes out to show that these universities are diverse and multicultural in their student population and accept students from a broad array of backgrounds and cultures.
     
 * The top universities in each factor are listed above and this answers our question as to which is best in what factor. We can make a choice based on the kind of environment we’re looking for in a university and the factor that matters most to us.
 
-3. **Is there a correlation between institution size and number of international students? Is there a relationship between age of the university and its reputation?**
+* These plots verify our previous conclusion that Academic Reputation and Employer Reputation have a strong correlation with the rank of the University compared to the other factors with Overall Score ranging above 85 at least!
+
+#### **3. Is there a correlation between different classification factors like Country, Age of the University, Reputation of the University, Size and International Student Numbers?**
 
 * Distribution of Top 100 Universities in each country.
 
@@ -239,7 +292,7 @@ TopUni2020 %>% filter(IntStuSCORE == 100)%>%
 knitr::include_graphics("Images/Exploration/map.png")
 ```
 
-    It is evident from the above figure that US/UK have the greatest number of universities in the Top 100 rankings worldwide with 29 and 18 universities respectively. Australia has the third highest number of Universities in the Top 100 with 7 and the rest of the countries in the list has 6 or lesser universities in the Top 100.
+* It is evident from the above figure that US/UK have the greatest number of universities in the Top 100 rankings worldwide with 29 and 18 universities respectively. Australia has the third highest number of Universities in the Top 100 with 7 and the rest of the countries in the list has 6 or lesser universities in the Top 100. This plot was built using Tableau.
     
 * **Is there a relationship between age of the university and its employer reputation?**
 
@@ -248,10 +301,10 @@ ggarrange((TopUni2020 %>% ggplot(aes(AGE, EmpSCORE, fill = AGE)) + geom_boxplot(
           (TopUni2020 %>% ggplot(aes(AGE, EmpRANK, fill = AGE)) + geom_boxplot()))
 ```
 
-                                  5 = Greater than 100 years old (Historic Universities)
-                                  4 = 50-100 years old (Mature Universities)
-                                  3 = 25-50 years old (Established Universities)
-                                  1 and 2 = Less than 25 years old (Young Universities)
+            5 = Greater than 100 years old (Historic Universities)
+         4 = 50-100 years old (Mature Universities)
+         3 = 25-50 years old (Established Universities)
+         1 and 2 = Less than 25 years old (Young Universities)
 
 * We can see that generally the historic and mature universities have better employer reputation. A higher SCORE and lower RANK is the desirable reading which is mostly found in the older universities. Thus, employer reputation generally increases with the age of the university.
 
@@ -262,10 +315,10 @@ ggarrange((TopUni2020 %>% ggplot(aes(SIZE, IntStuSCORE, fill = SIZE)) + geom_box
           (TopUni2020 %>% ggplot(aes(SIZE, IntStuRANK, fill = SIZE)) + geom_boxplot()))
 ```
     
-                                            XL = Greater than 30,000
-                                             L = Greater than 12,000
-                                             M = Greater than  5,000
-                                             S = Lesser  than  5,000
+                       XL = Greater than 30,000
+                     L = Greater than 12,000
+                     M = Greater than  5,000
+                     S = Lesser  than  5,000
 
 * We can observe that the Small (S) and Medium (M) sized universities have the greatest diversity among students with a greater number of international students compared to Large (L) and Extra Large (XL) sized universities. They have a desirable reading of higher SCORE and lower RANK values. Thus, a higher number of students count does not mean that there will be more diversity in the student population.
 
@@ -279,9 +332,11 @@ From the Data Exploration and Visualization conducted in the previous section, w
 
 * US, UK, and Australia have the greatest number of Universities in the Top 100 QS list.
 
-* Employer reputation generally increases with the age of the university. Also, some of the young institutions have a better employer reputation than the established ones. This shows the quality of Young institutions is good in general.
+* Employer reputation generally increases with the age of the university. Next time someone says University Rank doesn't matter for employment, just smile and do whatever you were doing anyways! Also, some of the young institutions have a better employer reputation than the established ones. This shows the quality of Young institutions is good in general.
 
 * Size of the university does not indicate its diversity. Smaller and Medium sized Universities have more International Students in comparison with Large and Extra-Large Universities.
+
+Hope this gives a comprehensive overview to all the young and aspiring students who are looking forward to pursue higher education for their career! Share this with someone you think will benefit from!
 
 # **References -**
 
@@ -302,3 +357,14 @@ From the Data Exploration and Visualization conducted in the previous section, w
   + H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
   
   + Alboukadel Kassambara (2020). ggpubr: 'ggplot2' Based Publication. Ready Plots. R package version 0.4.0. https://CRAN.R-project.org/package=ggpubr
+  
+  + Yihui Xie, Joe Cheng and Xianying Tan (2020). DT: A Wrapper of the JavaScript Library
+  'DataTables'. R package version 0.15. https://CRAN.R-project.org/package=DT
+  
+  + Simon Garnier (2018). viridis: Default Color Maps from 'matplotlib'. R package version
+  0.5.1. https://CRAN.R-project.org/package=viridis
+  
+  + Simon Urbanek (2013). png: Read and write PNG images. R package version 0.1-7.
+  https://CRAN.R-project.org/package=png
+  
+  + Hao Zhu (2019). kableExtra: Construct Complex Table with 'kable' and Pipe Syntax. R package version 1.1.0. https://CRAN.R-project.org/package=kableExtra
