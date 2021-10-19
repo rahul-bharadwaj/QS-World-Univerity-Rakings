@@ -1,5 +1,7 @@
 # QS University Rankings
 
+Open html file to view the analysis.
+
 ## Introduction -
 
 University ranking is a measurable outcome of multiple factors that are considered to evaluate the standard of education, faculty, resources, and infrastructure. Every year, Universities are ranked by different organizations around the world like CWUR, Times Higher Education, Quacquarelli Symmonds (QS) and many others. We are using a dataset that contains rankings of the world universities as maintained by QS.
