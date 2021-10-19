@@ -1,6 +1,6 @@
 # QS University Rankings
 
-Open html file to view the analysis.
+Open Reports/UniversityRankingAnalysisReport.pdf to view the analysis
 
 ## Introduction -
 
